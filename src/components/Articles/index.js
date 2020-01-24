@@ -1,5 +1,6 @@
 import React from "react"
 
+import { Media } from "../../Media"
 import FeaturedArticle from "../FeaturedArticle/index"
 import * as Styles from "./styles"
 
@@ -54,19 +55,35 @@ const Articles = () => {
 
   return (
     <>
-      <FeaturedArticle article={featuredArticle[0]} />
+      <Media lessThan="md">
+        <Styles.Articles>
+          {mobileArticleGrids.map(article => (
+            <Styles.Card>
+              <img src={article.image}></img>
+              <Styles.Headline>{article.headline}</Styles.Headline>
+              <Styles.FooterText>
+                {article.category} {article.date}
+              </Styles.FooterText>
+            </Styles.Card>
+          ))}
+        </Styles.Articles>
+      </Media>
 
-      <Styles.Articles>
-        {desktopArticleGrids.map(article => (
-          <Styles.Card>
-            <img src={article.image}></img>
-            <Styles.Headline>{article.headline}</Styles.Headline>
-            <Styles.FooterText>
-              {article.category} {article.date}
-            </Styles.FooterText>
-          </Styles.Card>
-        ))}
-      </Styles.Articles>
+      <Media greaterThanOrEqual="md">
+        <FeaturedArticle article={featuredArticle[0]} />
+
+        <Styles.Articles>
+          {desktopArticleGrids.map(article => (
+            <Styles.Card>
+              <img src={article.image}></img>
+              <Styles.Headline>{article.headline}</Styles.Headline>
+              <Styles.FooterText>
+                {article.category} {article.date}
+              </Styles.FooterText>
+            </Styles.Card>
+          ))}
+        </Styles.Articles>
+      </Media>
     </>
   )
 }

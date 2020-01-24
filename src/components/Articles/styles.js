@@ -13,7 +13,7 @@ export const Articles = styled.div`
 `
 
 export const Card = styled.div`
-  padding-right: 1rem;
+  padding-right: 0;
   border-right: none;
 
   img {
@@ -26,6 +26,7 @@ export const Card = styled.div`
 
   @media (min-width: 720px) {
     border-right: 1px solid rgb(226, 226, 226);
+    padding-right: 1rem;
   }
 `
 
