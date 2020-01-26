@@ -47,6 +47,20 @@ const articles = [
   },
 ]
 
+const ArticleGrid = ({ articles }) => (
+  <Styles.Articles>
+    {articles.map(article => (
+      <Styles.Card>
+        <img src={article.image}></img>
+        <Styles.Headline>{article.headline}</Styles.Headline>
+        <Styles.FooterText>
+          {article.category} {article.date}
+        </Styles.FooterText>
+      </Styles.Card>
+    ))}
+  </Styles.Articles>
+)
+
 const Articles = () => {
   const featuredArticle = articles.slice(0, 1)
 
@@ -56,33 +70,13 @@ const Articles = () => {
   return (
     <>
       <Media lessThan="md">
-        <Styles.Articles>
-          {mobileArticleGrids.map(article => (
-            <Styles.Card>
-              <img src={article.image}></img>
-              <Styles.Headline>{article.headline}</Styles.Headline>
-              <Styles.FooterText>
-                {article.category} {article.date}
-              </Styles.FooterText>
-            </Styles.Card>
-          ))}
-        </Styles.Articles>
+        <ArticleGrid articles={mobileArticleGrids} />
       </Media>
 
       <Media greaterThanOrEqual="md">
         <FeaturedArticle article={featuredArticle[0]} />
 
-        <Styles.Articles>
-          {desktopArticleGrids.map(article => (
-            <Styles.Card>
-              <img src={article.image}></img>
-              <Styles.Headline>{article.headline}</Styles.Headline>
-              <Styles.FooterText>
-                {article.category} {article.date}
-              </Styles.FooterText>
-            </Styles.Card>
-          ))}
-        </Styles.Articles>
+        <ArticleGrid articles={desktopArticleGrids} />
       </Media>
     </>
   )
